@@ -182,7 +182,7 @@ class ViewController: UIViewController {
         self.betOneButton.setTitle("Bet One", forState: UIControlState.Normal)
         self.betOneButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         self.betOneButton.titleLabel?.font = UIFont(name: "Superclarendon-Bold", size: 12)
-        self.betOneButton.backgroundColor = UIColor.lightGrayColor()
+        self.betOneButton.backgroundColor = UIColor.greenColor()
         self.betOneButton.sizeToFit()
         self.betOneButton.center = CGPointMake(viewContainer.frame.width * kEight * 3, viewContainer.frame.height * kHalf)
         self.betOneButton.addTarget(self, action: "betOneButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
