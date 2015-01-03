@@ -24,6 +24,12 @@ class ViewController: UIViewController {
     var betTitleLabel: UILabel!
     var winnerTitleLabel: UILabel!
     
+    //Кнопки
+    var resetButton: UIButton!
+    var betOneButton: UIButton!
+    var betMaxButton: UIButton!
+    var spinButton: UIButton!
+    
     //Верхний контейнер
     var titleLabel: UILabel!
     
@@ -36,6 +42,9 @@ class ViewController: UIViewController {
     
     let kNumberOfContainers = 3
     let kNumberOfSlots = 3
+    
+    let kHalf: CGFloat = 1/2
+    let kEight: CGFloat = 1/8
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +54,20 @@ class ViewController: UIViewController {
         setupFirstContainer(self.firstContainer)
         setupSecondContainer(self.secondContainer)
         setupThirdContainer(self.thirdContainer)
+        setupFourthContainer(self.fourthContainer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func resetButtonPressed(button: UIButton) {
+        println("resetButtonPressed")
+    }
+    
+    func betOneButtonPressed(button: UIButton) {
+        println("betOneButtonPressed")
     }
 
     func setupContainerViews() {
@@ -103,6 +121,72 @@ class ViewController: UIViewController {
         self.creditsLabel.textAlignment = NSTextAlignment.Center
         self.creditsLabel.backgroundColor = UIColor.darkGrayColor()
         viewContainer.addSubview(self.creditsLabel)
+        
+        self.betLabel = UILabel()
+        self.betLabel.text = "0000"
+        self.creditsLabel.textColor = UIColor.redColor()
+        self.betLabel.font = UIFont(name: "Menlo-Bold", size: 16)
+        self.betLabel.sizeToFit()
+        self.betLabel.center = CGPointMake(viewContainer.frame.width * kSixth * 3, viewContainer.frame.height * kThird)
+        self.betLabel.textAlignment = NSTextAlignment.Center
+        self.betLabel.backgroundColor = UIColor.darkGrayColor()
+        viewContainer.addSubview(self.betLabel)
+        
+        self.winnerPaidLabel = UILabel()
+        self.winnerPaidLabel.text = "000000"
+        self.winnerPaidLabel.textColor = UIColor.redColor()
+        self.winnerPaidLabel.font = UIFont(name: "Menlo-Bold", size: 16)
+        self.winnerPaidLabel.sizeToFit()
+        self.winnerPaidLabel.center = CGPointMake(viewContainer.frame.width * kSixth * 5, viewContainer.frame.height * kThird)
+        self.winnerPaidLabel.textAlignment = NSTextAlignment.Center
+        self.winnerPaidLabel.backgroundColor = UIColor.darkGrayColor()
+        viewContainer.addSubview(self.winnerPaidLabel)
+        
+        self.creditsTitleLabel = UILabel()
+        self.creditsTitleLabel.text = "Credits"
+        self.creditsTitleLabel.textColor = UIColor.blackColor()
+        self.creditsTitleLabel.font = UIFont(name: "AmericanTypewriter", size: 14)
+        self.creditsTitleLabel.sizeToFit()
+        self.creditsTitleLabel.center = CGPointMake(viewContainer.frame.width * kSixth, viewContainer.frame.height * kThird * 2)
+        viewContainer.addSubview(self.creditsTitleLabel)
+        
+        self.betTitleLabel = UILabel()
+        self.betTitleLabel.text = "Bet"
+        self.betTitleLabel.textColor = UIColor.blackColor()
+        self.betTitleLabel.font = UIFont(name: "AmericanTypewriter", size: 14)
+        self.betTitleLabel.sizeToFit()
+        self.betTitleLabel.center = CGPointMake(viewContainer.frame.width * kSixth * 3, viewContainer.frame.height * kThird * 2)
+        viewContainer.addSubview(self.betTitleLabel)
+        
+        self.winnerTitleLabel = UILabel()
+        self.winnerTitleLabel.text = "Winner paid"
+        self.winnerTitleLabel.textColor = UIColor.blackColor()
+        self.winnerTitleLabel.font = UIFont(name: "AmericanTypewriter", size: 14)
+        self.winnerTitleLabel.sizeToFit()
+        self.winnerTitleLabel.center = CGPointMake(viewContainer.frame.width * kSixth * 5, viewContainer.frame.height * kThird * 2)
+        viewContainer.addSubview(self.winnerTitleLabel)
+    }
+    
+    func setupFourthContainer(viewContainer: UIView) {
+        self.resetButton = UIButton()
+        self.resetButton.setTitle("Reset", forState: UIControlState.Normal)
+        self.resetButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.resetButton.titleLabel?.font = UIFont(name: "Superclarendon-Bold", size: 12)
+        self.resetButton.backgroundColor = UIColor.lightGrayColor()
+        self.resetButton.sizeToFit()
+        self.resetButton.center = CGPointMake(viewContainer.frame.width * kEight, viewContainer.frame.height * kHalf)
+        self.resetButton.addTarget(self, action: "resetButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        viewContainer.addSubview(self.resetButton)
+        
+        self.betOneButton = UIButton()
+        self.betOneButton.setTitle("Bet One", forState: UIControlState.Normal)
+        self.betOneButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.betOneButton.titleLabel?.font = UIFont(name: "Superclarendon-Bold", size: 12)
+        self.betOneButton.backgroundColor = UIColor.lightGrayColor()
+        self.betOneButton.sizeToFit()
+        self.betOneButton.center = CGPointMake(viewContainer.frame.width * kEight * 3, viewContainer.frame.height * kHalf)
+        self.betOneButton.addTarget(self, action: "betOneButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        viewContainer.addSubview(self.betOneButton)
     }
 
 }
